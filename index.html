@@ -14,22 +14,66 @@
             margin-top: 50px;
         }
       .btn {
-            max-width: 150px;
+            width: 100%;
             max-height: 150px;
-            padding: 15px;
-            aspect-ratio: 1; /* Ensures buttons are square */
-            margin: 5px; /* Adds margin around each button */
+            aspect-ratio: 1;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #1e1e1e; /* Base color */
+            border: 1px solid #2d2d2d;
+            color: #ffffff;
+            font-weight: 500;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.85rem;
         }
 
-        /* Add animation for button flash effect */
-        @keyframes buttonFlash {
+        /* Odd buttons */
+        .btn:nth-child(odd) {
+            background-color: #1e1e1e;
+            border-color: #2d2d2d;
+        }
+
+        /* Even buttons */
+        .btn:nth-child(even) {
+            background-color: #2d2d2d;
+            border-color: #3d3d3d;
+        }
+
+        /* Hover states */
+        .btn:nth-child(odd):hover {
+            background-color: #2d2d2d;
+            transform: translateY(-2px);
+        }
+
+        .btn:nth-child(even):hover {
+            background-color: #3d3d3d;
+            transform: translateY(-2px);
+        }
+
+        /* Update flash animation for odd buttons */
+        @keyframes buttonFlashOdd {
+            0% { background-color: #1e1e1e; }
+            50% { background-color: #3d3d3d; }
+            100% { background-color: #1e1e1e; }
+        }
+
+        /* Update flash animation for even buttons */
+        @keyframes buttonFlashEven {
             0% { background-color: #2d2d2d; }
             50% { background-color: #4d4d4d; }
             100% { background-color: #2d2d2d; }
         }
 
-      .button-flash {
-            animation: buttonFlash 0.3s ease;
+        /* Apply different animations based on odd/even */
+        .btn:nth-child(odd).button-flash {
+            animation: buttonFlashOdd 0.3s ease;
+        }
+
+        .btn:nth-child(even).button-flash {
+            animation: buttonFlashEven 0.3s ease;
         }
 
         #buttonContainer {
