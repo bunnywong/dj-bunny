@@ -196,7 +196,8 @@
 
         // Keep other existing event listeners and functions the same
         document.addEventListener('click', (event) => {
-            if (!event.target.classList.contains('btn')) {
+            // Check if click is not on a button and not inside the button container
+            if (!event.target.classList.contains('btn') && !event.target.closest('#buttonContainer')) {
                 stopSound();
             }
         });
@@ -235,6 +236,20 @@
 
         // Create buttons on page load
         createButtons();
+
+        // Add this function if it's not already defined
+        function stopSound() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentButton) {
+                    currentButton.classList.remove('button-fade-out');
+                }
+                currentAudio = null;
+                currentButton = null;
+                currentSoundIndex = null;
+            }
+        }
     </script>
 </body>
 </html>
