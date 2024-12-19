@@ -4,7 +4,7 @@ const urlsToCache = [
   '/index.html',
   '/manifest.json',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',
-  // Cache all your sound files
+  // Add all your sound files with exact paths
   '/sounds/haha.mp3',
   '/sounds/my-mom.mp3',
   '/sounds/hit-ear.mp3',
@@ -15,60 +15,47 @@ const urlsToCache = [
   '/sounds/applause-max.mp3',
 ]
 
-// Install event - cache all initial resources
+// Add logging to debug cache status
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache')
-      return cache.addAll(urlsToCache)
-    })
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Caching files...')
+        return cache.addAll(urlsToCache)
+      })
+      .then(() => console.log('All files cached successfully'))
+      .catch((error) => console.error('Cache failed:', error))
   )
 })
 
-// Fetch event - serve from cache first, then network
+// Add logging to debug fetch events
 self.addEventListener('fetch', (event) => {
+  if (!event.request.url.startsWith('http')) {
+    return
+  }
+
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Cache hit - return response
       if (response) {
+        console.log('Serving from cache:', event.request.url)
         return response
       }
 
-      // Clone the request because it's a one-time use stream
-      const fetchRequest = event.request.clone()
-
-      return fetch(fetchRequest).then((response) => {
-        // Check if we received a valid response
+      console.log('Fetching from network:', event.request.url)
+      return fetch(event.request.clone()).then((response) => {
         if (!response || response.status !== 200 || response.type !== 'basic') {
           return response
         }
 
-        // Clone the response because it's a one-time use stream
         const responseToCache = response.clone()
-
         caches.open(CACHE_NAME).then((cache) => {
+          console.log('Caching new resource:', event.request.url)
           cache.put(event.request, responseToCache)
         })
 
         return response
       })
-    })
-  )
-})
-
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME]
-
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName)
-          }
-        })
-      )
     })
   )
 })
