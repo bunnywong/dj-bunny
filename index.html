@@ -84,22 +84,42 @@
             }
         }
 
+        // Add click event listener to document
+        document.addEventListener('click', (event) => {
+            // Check if the click was outside any button
+            if (!event.target.classList.contains('btn')) {
+                stopSound();
+            }
+        });
+
+        // Update container to prevent click propagation from buttons
+        document.querySelector('.container').addEventListener('click', (event) => {
+            // Stop propagation only for button clicks
+            if (event.target.classList.contains('btn')) {
+                event.stopPropagation();
+            }
+        });
+
+        // Keep existing keyboard controls
         document.addEventListener('keydown', (event) => {
             const key = event.key;
             if (key >= '0' && key <= '9') {
                 const index = parseInt(key);
                 const soundIndex = index === 0 ? sounds.length - 1 : index - 1;
+                
+                if (currentButton) {
+                    currentButton.classList.remove('button-fade-out');
+                }
+                
                 playSound(soundIndex);
                 
-                // Flash the corresponding button
                 const buttons = document.querySelectorAll('.btn');
                 const button = buttons[soundIndex];
                 button.classList.add('button-flash');
                 
-                // Remove the animation class after it completes
                 setTimeout(() => {
                     button.classList.remove('button-flash');
-                }, 300); // Match this with animation duration (0.3s = 300ms)
+                }, 300);
                 
             } else if (key === ' ' || key === 'Escape') {
                 event.preventDefault();
