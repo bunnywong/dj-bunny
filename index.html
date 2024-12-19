@@ -174,18 +174,30 @@
 
         function createButtons() {
             const buttonContainer = document.getElementById('buttonContainer');
+            const emojis = {
+                'haha': '😂',
+                'my mom': '👩',
+                'hit ear': '👂',
+                'fart': '💨',
+                'don bell': '🔔',
+                'bo smile': '😊',
+                'applause lite': '👏',
+                'applause max': '👏👏'
+            };
+
             for (let i = 0; i < sounds.length; i++) {
                 const buttonIndex = (i + 1) % 10;
                 const fileName = sounds[i].split('/').pop()
                     .replace('.mp3', '')
                     .replace(/-/g, ' ');
                 
-                const buttonName = `${buttonIndex}: ${fileName}`;
+                const emoji = emojis[fileName] || '🎵'; // Default to musical note if no emoji match
+                const buttonName = `${buttonIndex}: ${fileName} ${emoji}`;
+                
                 const button = document.createElement('button');
                 button.className = 'btn btn-primary';
                 button.innerText = buttonName;
                 
-                // Use click instead of onclick to handle double clicks
                 button.addEventListener('click', (event) => {
                     playSound(i);
                 });
