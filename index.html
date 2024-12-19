@@ -8,14 +8,15 @@
     <style>
         body {
             background-color: black;
-            color: white
+            color: white;
         }
-        .container {
+      .container {
             margin-top: 50px;
         }
-        .btn {
-            width: 100%;
-            padding: 20px;
+      .btn {
+            max-width: 150px;
+            max-height: 150px;
+            padding: 15px;
             aspect-ratio: 1; /* Ensures buttons are square */
             margin: 5px; /* Adds margin around each button */
         }
@@ -27,7 +28,7 @@
             100% { background-color: #2d2d2d; }
         }
 
-        .button-flash {
+      .button-flash {
             animation: buttonFlash 0.3s ease;
         }
 
@@ -36,6 +37,26 @@
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+        }
+
+        @media (max-width: 767px) {
+          .btn {
+                flex: 0 0 calc(50% - 10px);
+                width: calc(50% - 10px);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+          .btn {
+                flex: 1 1 calc(33.333% - 5px);
+            }
+        }
+
+        @media (min-width: 992px) {
+          .btn {
+                flex: 1 1 calc(20% - 5px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -62,7 +83,7 @@
         function playSound(index) {
             if (currentAudio) {
                 currentAudio.pause();
-                currentAudio.currentTime = 0; // Reset the audio to the start
+                currentAudio.currentTime = 0; /* Reset the audio to the start */
             }
             currentAudio = new Audio(sounds[index]);
             currentAudio.play();
@@ -71,8 +92,8 @@
         function stopSound() {
             if (currentAudio) {
                 currentAudio.pause();
-                currentAudio.currentTime = 0; // Reset the audio to the start
-                currentAudio = null; // Clear the reference
+                currentAudio.currentTime = 0; /* Reset the audio to the start */
+                currentAudio = null; /* Clear the reference */
             }
         }
 
@@ -80,10 +101,10 @@
             const buttonContainer = document.getElementById('buttonContainer');
             // Create buttons in order 1-9, then 0
             for (let i = 0; i < sounds.length; i++) {
-                const buttonIndex = (i + 1) % 10; // Button names: 1-9, then 0
+                const buttonIndex = (i + 1) % 10; /* Button names: 1-9, then 0 */
                 const buttonName = `${buttonIndex}: ${sounds[i].split('/').pop().replace('.mp3', '')}`;
                 const button = document.createElement('button');
-                button.className = 'btn btn-primary col-6 col-md-2'; // 2 buttons per row on mobile and 5 on medium+
+                button.className = 'btn btn-primary';
                 button.innerText = buttonName;
                 button.onclick = () => playSound(i);
                 buttonContainer.appendChild(button);
@@ -111,7 +132,7 @@
             const key = event.key;
             if (key >= '0' && key <= '9') {
                 const index = parseInt(key);
-                const soundIndex = index === 0 ? sounds.length - 1 : index - 1;
+                const soundIndex = index === 0? sounds.length - 1 : index - 1;
                 playSound(soundIndex);
                 
                 // Flash the corresponding button
