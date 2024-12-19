@@ -123,41 +123,67 @@
         ];
 
         let currentAudio = null;
+        let currentButton = null;
+        let currentSoundIndex = null;
+        let lastClickTime = 0;
+        const doubleClickDelay = 300; // Time window for double click in milliseconds
 
-        function playSound(index) {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0; /* Reset the audio to the start */
+        function playSound(index, isDoubleClick = false) {
+            const now = Date.now();
+            
+            // Check for double click
+            if (currentAudio && currentSoundIndex === index && (now - lastClickTime) < doubleClickDelay) {
+                stopSound();
+                return;
             }
-            currentAudio = new Audio(sounds[index]);
-            currentAudio.play();
-        }
+            
+            // Update last click time
+            lastClickTime = now;
+            
+            // If not a double click, proceed with normal play
+            if (!isDoubleClick) {
+                // Stop previous sound if any
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    if (currentButton) {
+                        currentButton.classList.remove('button-fade-out');
+                    }
+                }
 
-        function stopSound() {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0; /* Reset the audio to the start */
-                currentAudio = null; /* Clear the reference */
+                // Play new sound
+                currentAudio = new Audio(sounds[index]);
+                currentButton = document.querySelectorAll('.btn')[index];
+                currentSoundIndex = index;
+                currentAudio.play();
             }
         }
 
         function createButtons() {
             const buttonContainer = document.getElementById('buttonContainer');
-            // Create buttons in order 1-9, then 0
             for (let i = 0; i < sounds.length; i++) {
-                const buttonIndex = (i + 1) % 10; /* Button names: 1-9, then 0 */
-                const buttonName = `${buttonIndex}: ${sounds[i].split('/').pop().replace('.mp3', '')}`;
+                const buttonIndex = (i + 1) % 10;
+                const fileName = sounds[i].split('/').pop()
+                    .replace('sound_', '')
+                    .replace('.mp3', '')
+                    .replace(/-/g, ' ');
+                
+                const buttonName = `${buttonIndex}: ${fileName}`;
                 const button = document.createElement('button');
                 button.className = 'btn btn-primary';
                 button.innerText = buttonName;
-                button.onclick = () => playSound(i);
+                
+                // Use click instead of onclick to handle double clicks
+                button.addEventListener('click', (event) => {
+                    playSound(i);
+                });
+                
                 buttonContainer.appendChild(button);
             }
         }
 
-        // Add click event listener to document
+        // Keep other existing event listeners and functions the same
         document.addEventListener('click', (event) => {
-            // Check if the click was outside any button
             if (!event.target.classList.contains('btn')) {
                 stopSound();
             }
