@@ -192,7 +192,7 @@
                     .replace(/-/g, ' ');
                 
                 const emoji = emojis[fileName] || '🎵'; // Default to musical note if no emoji match
-                const buttonName = `${buttonIndex}: ${fileName} ${emoji}`;
+                const buttonName = `${buttonIndex}. ${fileName} ${emoji}`;
                 
                 const button = document.createElement('button');
                 button.className = 'btn btn-primary';
