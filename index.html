@@ -125,16 +125,14 @@
         }
 
         const sounds = [
-            'sounds/sound_haha.mp3',
-            'sounds/sound_my-mom.mp3',
-            'sounds/sound_hit-ear.mp3',
-            'sounds/sound_fart.mp3',
-            'sounds/sound_don-bell.mp3',
-            'sounds/sound_bo-smile.mp3',
-            'sounds/sound_whats-jp.mp3',
-            'sounds/sound_applause-lite.mp3',
-            'sounds/sound_applause-max.mp3',
-            'sounds/sound_ball-game-hyper.mp3',
+            'sounds/haha.mp3',
+            'sounds/my-mom.mp3',
+            'sounds/hit-ear.mp3',
+            'sounds/fart.mp3',
+            'sounds/don-bell.mp3',
+            'sounds/bo-smile.mp3',
+            'sounds/applause-lite.mp3',
+            'sounds/applause-max.mp3',
         ];
 
         let currentAudio = null;
@@ -179,7 +177,6 @@
             for (let i = 0; i < sounds.length; i++) {
                 const buttonIndex = (i + 1) % 10;
                 const fileName = sounds[i].split('/').pop()
-                    .replace('sound_', '')
                     .replace('.mp3', '')
                     .replace(/-/g, ' ');
                 
