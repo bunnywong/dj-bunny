@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Effect App</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn {
+            width: 100%;
+            padding: 20px;
+            aspect-ratio: 1; /* Ensures buttons are square */
+            margin: 5px; /* Adds margin around each button */
+        }
+
+        /* Add animation for button flash effect */
+        @keyframes buttonFlash {
+            0% { background-color: #2d2d2d; }
+            50% { background-color: #4d4d4d; }
+            100% { background-color: #2d2d2d; }
+        }
+
+        .button-flash {
+            animation: buttonFlash 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Sound Effect DJ</h1>
+        <div class="row" id="buttonContainer"></div>
+    </div>
+
+    <script>
+        const sounds = [
+            'sounds/sound_haha.mp3',
+            'sounds/sound_my-mom.mp3',
+            'sounds/sound_hit-ear.mp3',
+            'sounds/sound_fart.mp3',
+            'sounds/sound_don-bell.mp3',
+            'sounds/sound_whats-jp.mp3',
+            'sounds/sound_applause-lite.mp3',
+            'sounds/sound_applause-max.mp3',
+            'sounds/sound_ball-game-hyper.mp3',
+        ];
+
+        let currentAudio = null;
+
+        function playSound(index) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; // Reset the audio to the start
+            }
+            currentAudio = new Audio(sounds[index]);
+            currentAudio.play();
+        }
+
+        function stopSound() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0; // Reset the audio to the start
+                currentAudio = null; // Clear the reference
+            }
+        }
+
+        function createButtons() {
+            const buttonContainer = document.getElementById('buttonContainer');
+            // Create buttons in order 1-9, then 0
+            for (let i = 0; i < sounds.length; i++) {
+                const buttonIndex = (i + 1) % 10; // Button names: 1-9, then 0
+                const buttonName = `${buttonIndex}: ${sounds[i].split('/').pop().replace('.mp3', '')}`;
+                const button = document.createElement('button');
+                button.className = 'btn btn-primary col-6 col-md-2'; // 2 buttons per row on mobile and 5 on medium+
+                button.innerText = buttonName;
+                button.onclick = () => playSound(i);
+                buttonContainer.appendChild(button);
+            }
+        }
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+            if (key >= '0' && key <= '9') {
+                const index = parseInt(key);
+                const soundIndex = index === 0 ? sounds.length - 1 : index - 1;
+                playSound(soundIndex);
+                
+                // Flash the corresponding button
+                const buttons = document.querySelectorAll('.btn');
+                const button = buttons[soundIndex];
+                button.classList.add('button-flash');
+                
+                // Remove the animation class after it completes
+                setTimeout(() => {
+                    button.classList.remove('button-flash');
+                }, 300); // Match this with animation duration (0.3s = 300ms)
+                
+            } else if (key === ' ' || key === 'Escape') {
+                event.preventDefault();
+                stopSound();
+            }
+        });
+
+        // Create buttons on page load
+        createButtons();
+    </script>
+</body>
+</html>
