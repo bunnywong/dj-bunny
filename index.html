@@ -112,20 +112,17 @@
             if (key >= '0' && key <= '9') {
                 const index = parseInt(key);
                 const soundIndex = index === 0 ? sounds.length - 1 : index - 1;
-                
-                if (currentButton) {
-                    currentButton.classList.remove('button-fade-out');
-                }
-                
                 playSound(soundIndex);
                 
+                // Flash the corresponding button
                 const buttons = document.querySelectorAll('.btn');
                 const button = buttons[soundIndex];
                 button.classList.add('button-flash');
                 
+                // Remove the animation class after it completes
                 setTimeout(() => {
                     button.classList.remove('button-flash');
-                }, 300);
+                }, 300); // Match this with animation duration (0.3s = 300ms)
                 
             } else if (key === ' ' || key === 'Escape') {
                 event.preventDefault();
