@@ -58,15 +58,31 @@ function playSound(index, isDoubleClick = false) {
     currentSoundIndex = index
     currentAudio.play()
 
+    // Set the background for the currently playing button
     if (currentButton) {
-      currentButton.style.backgroundColor = '#ffcc00'
+      currentButton.style.backgroundColor = '#ffcc00' // Change to your desired color
     }
 
+    // Remove background color when the sound finishes playing
     currentAudio.addEventListener('ended', () => {
       if (currentButton) {
-        currentButton.style.backgroundColor = ''
+        currentButton.style.backgroundColor = '' // Reset background color
       }
     })
+  }
+}
+
+function stopSound() {
+  if (currentAudio) {
+    currentAudio.pause()
+    currentAudio.currentTime = 0
+    if (currentButton) {
+      currentButton.classList.remove('button-fade-out')
+      currentButton.style.backgroundColor = '' // Reset background color
+    }
+    currentAudio = null
+    currentButton = null
+    currentSoundIndex = null
   }
 }
 
@@ -122,14 +138,16 @@ function createBGMButtons() {
 
 function toggleBGM(index, button) {
   if (currentBGM && currentBGMButton === button) {
+    // If the same button is clicked, toggle play/pause
     if (currentBGM.paused) {
       currentBGM.play()
-      button.style.backgroundColor = '#ffcc00'
+      button.style.backgroundColor = '#ffcc00' // Set active background color
     } else {
       currentBGM.pause()
-      button.style.backgroundColor = ''
+      button.style.backgroundColor = '' // Reset background color
     }
   } else {
+    // If a different button is clicked, stop the current BGM
     if (currentBGM) {
       stopBGM()
     }
@@ -144,14 +162,15 @@ function playBGM(index, button) {
     .play()
     .then(() => {
       if (button) {
-        button.classList.add('playing')
-        button.style.backgroundColor = '#ffcc00'
+        button.classList.add('playing') // Ensure button exists before accessing classList
+        button.style.backgroundColor = '#ffcc00' // Set active background color
       }
-      currentBGMButton = button
+      currentBGMButton = button // Set the current button
 
+      // Remove background color when the BGM finishes playing
       currentBGM.addEventListener('ended', () => {
         if (button) {
-          button.style.backgroundColor = ''
+          button.style.backgroundColor = '' // Reset background color
         }
       })
     })
@@ -166,26 +185,11 @@ function stopBGM() {
     currentBGM.currentTime = 0
     if (currentBGMButton) {
       currentBGMButton.classList.remove('playing')
-      currentBGMButton.style.backgroundColor = ''
+      currentBGMButton.style.backgroundColor = '' // Reset background color
     }
     currentBGM = null
     currentBGMButton = null
   }
-}
-
-function stopSound() {
-  if (currentAudio) {
-    currentAudio.pause()
-    currentAudio.currentTime = 0
-    if (currentButton) {
-      currentButton.classList.remove('button-fade-out')
-      currentButton.style.backgroundColor = ''
-    }
-    currentAudio = null
-    currentButton = null
-    currentSoundIndex = null
-  }
-  stopBGM()
 }
 
 // Event Listeners
