@@ -215,11 +215,12 @@ function switchTab(direction) {
   if (direction === 'next') {
     newIndex = (currentIndex + 1) % tabs.length // Move to the next tab, loop back to start
   } else {
+    newIndex = (currentIndex - 1 + tabs.length) % tabs.length // Move to the previous tab, loop back to end
   }
-  newIndex = 0
 
   // Activate the new tab
   $(`#soundTabs a[href="${tabs[newIndex]}"]`).tab('show')
+  $(`#myTab > li:nth-child(${currentIndex === 1 ? 1 : 2}) a`).tab('show')
 }
 
 // Initialize on page load
