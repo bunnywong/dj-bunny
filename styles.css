@@ -141,7 +141,7 @@ body {
 }
 
 /* File Upload Container */
-#effectUploadContainer, #bgmUploadContainer {
+#effectUploadContainer,#bgmUploadContainer {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -149,13 +149,13 @@ body {
 }
 
 /* File Input Styles */
-#bgmUpload,#effectUpload {
+#bgmUpload {
     display: none; /* Hide the default file input */
 }
 
 .upload-label {
-    display: inline-block;
-    padding: 15px 30px;
+  display: inline-block;
+  padding: 15px 30px;
     background-color: #1e1e1e;
     color: #ffffff;
     border-radius: 10px;
@@ -163,6 +163,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 1rem;
+    margin-top: 10px;
 }
 
 .upload-label:hover {
@@ -180,4 +181,19 @@ body {
     border-radius: 10px;
     padding: 10px;
     border: 1px solid #3d3d3d;
+}
+
+/* Hide the Effect Upload input */
+#effectUpload {
+    display: none; /* Hide the default file input */
+}
+
+/* Effect Upload Styles */
+.upload-label.effect {
+    background-color: #d3d3d3;
+    color: #000000;
+}
+
+.upload-label.effect:hover {
+    background-color: #b0b0b0;
 } 
