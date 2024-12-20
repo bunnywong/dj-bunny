@@ -12,7 +12,7 @@ const sounds = [
 ]
 
 // BGM array
-const bgmSounds = [{ name: 'BGM', file: '/sounds/bgm' }]
+const bgmSounds = [{ name: 'ice', file: 'sounds/bgm/ice.mp3' }]
 
 let currentAudio = null
 let currentButton = null
