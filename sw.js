@@ -7,6 +7,7 @@ const urlsToCache = [
   '/icons/favicon.ico',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',
   // Add all your sound files with exact paths
+  '/script.js',
   '/sounds/effect/haha.mp3',
   '/sounds/effect/my-mom.mp3',
   '/sounds/effect/hit-ear.mp3',
@@ -16,8 +17,8 @@ const urlsToCache = [
   '/sounds/effect/bo-smile.mp3',
   '/sounds/effect/applause-lite.mp3',
   '/sounds/effect/applause-max.mp3',
-  '/sounds/bgm/ice.mp3',
-  '/script.js',
+  '/sounds/bgm/chill_ice.mp3',
+  '/sounds/bgm/hi_welcome-bro.mp3',
   '/sounds/bgm/pk_hall-om-mig.mp3',
 ]
 
