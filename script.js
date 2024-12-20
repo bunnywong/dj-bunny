@@ -26,6 +26,19 @@ let currentBGMButton = null
 let lastClickTime = 0
 const doubleClickDelay = 300
 
+// Preload all audio files
+function preloadAudio() {
+  sounds.forEach((sound) => {
+    const audio = new Audio(sound) // Create a new Audio object for each sound
+    audio.load() // Preload the audio
+  })
+
+  bgmSounds.forEach((bgm) => {
+    const audio = new Audio(bgm.file) // Create a new Audio object for each BGM
+    audio.load() // Preload the audio
+  })
+}
+
 // Initialize tabs
 $(document).ready(function () {
   $('#soundTabs a').on('click', function (e) {
@@ -255,6 +268,7 @@ function switchTab(direction) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+  preloadAudio() // Preload all audio files
   createButtons()
   createBGMButtons()
 })
