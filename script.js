@@ -133,6 +133,7 @@ function createButtons() {
 
 function createBGMButtons() {
   const bgmContainer = document.getElementById('bgmContainer')
+  bgmContainer.innerHTML = '' // Clear existing buttons
 
   bgmSounds.forEach((sound, index) => {
     const buttonIndex = (index + 1) % 10
@@ -282,4 +283,17 @@ if ('serviceWorker' in navigator) {
         console.error('Service Worker registration failed:', error)
       })
   })
+}
+
+// Add an event listener for file uploads
+document.getElementById('bgmUpload').addEventListener('change', handleBGMUpload)
+
+function handleBGMUpload(event) {
+  const files = event.target.files
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i]
+    const url = URL.createObjectURL(file) // Create a URL for the uploaded file
+    bgmSounds.push({ name: file.name, file: url }) // Add the uploaded BGM to the bgmSounds array
+  }
+  createBGMButtons() // Recreate BGM buttons to include the new uploads
 }
