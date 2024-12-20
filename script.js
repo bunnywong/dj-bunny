@@ -220,7 +220,7 @@ document.addEventListener('keydown', (event) => {
       }
     } else if (currentTab === 'bgm') {
       if (index < bgmSounds.length) {
-        toggleBGM(index, currentBGMButton) // Toggle BGM
+        toggleBGM(index, document.querySelectorAll('#bgmContainer .btn')[index]) // Toggle BGM
       }
     }
   }
