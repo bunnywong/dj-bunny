@@ -18,6 +18,7 @@ const urlsToCache = [
   '/sounds/effect/applause-max.mp3',
   '/sounds/bgm/ice.mp3',
   '/script.js',
+  '/sounds/bgm/pk_hall-om-mig.mp3',
 ]
 
 // Add logging to debug cache status
