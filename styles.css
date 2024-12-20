@@ -141,7 +141,7 @@ body {
 }
 
 /* File Upload Container */
-#bgmUploadContainer {
+#effectUploadContainer, #bgmUploadContainer {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -149,7 +149,7 @@ body {
 }
 
 /* File Input Styles */
-#bgmUpload {
+#bgmUpload,#effectUpload {
     display: none; /* Hide the default file input */
 }
 
