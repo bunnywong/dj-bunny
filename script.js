@@ -112,7 +112,7 @@ function createBGMButtons() {
     const buttonIndex = (index + 1) % 10
     const button = document.createElement('button')
     button.className = 'btn btn-primary'
-    button.innerText = `${buttonIndex}. ${sound.name}`
+    button.innerText = `${buttonIndex}. ${sound.name} 🎵`
 
     button.addEventListener('click', () => toggleBGM(index, button))
 
