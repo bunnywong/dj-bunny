@@ -50,11 +50,7 @@ function playSound(index, isDoubleClick = false) {
 
   if (!isDoubleClick) {
     if (currentAudio) {
-      currentAudio.pause()
-      currentAudio.currentTime = 0
-      if (currentButton) {
-        currentButton.classList.remove('button-fade-out')
-      }
+      stopSound()
     }
 
     currentAudio = new Audio(sounds[index])
@@ -126,7 +122,13 @@ function createBGMButtons() {
 
 function toggleBGM(index, button) {
   if (currentBGM && currentBGMButton === button) {
-    stopBGM()
+    if (currentBGM.paused) {
+      currentBGM.play()
+      button.style.backgroundColor = '#ffcc00'
+    } else {
+      currentBGM.pause()
+      button.style.backgroundColor = ''
+    }
   } else {
     if (currentBGM) {
       stopBGM()
