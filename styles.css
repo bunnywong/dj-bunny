@@ -154,20 +154,20 @@ body {
 }
 
 .upload-label {
-  display: inline-block;
-  padding: 15px 30px;
-    background-color: #1e1e1e;
-    color: #ffffff;
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #808080; /* Gray color for both */
+    color: #ffffff; /* Text color */
     border-radius: 10px;
     border: 1px solid #2d2d2d;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 10px; /* Margin on top for both */
 }
 
 .upload-label:hover {
-    background-color: #2d2d2d;
+    background-color: #696969; /* Darker gray on hover */
 }
 
 /* Uploaded File List */
@@ -190,10 +190,10 @@ body {
 
 /* Effect Upload Styles */
 .upload-label.effect {
-    background-color: #d3d3d3;
-    color: #000000;
+    background-color: #808080; /* Gray for both */
+    color: #ffffff; /* Text color */
 }
 
 .upload-label.effect:hover {
-    background-color: #b0b0b0;
+    background-color: #696969; /* Darker gray on hover */
 } 
