@@ -13,8 +13,8 @@ const sounds = [
 
 // BGM array
 const bgmSounds = [
-  { name: 'Chill - ice', file: 'sounds/bgm/ice.mp3' },
-  { name: 'PK - Hall', file: 'sounds/bgm/pk_hall-om-mig.mp3' },
+  { name: 'Chill - ice🧊', file: 'sounds/bgm/ice.mp3' },
+  { name: 'PK - Hall🏛️', file: 'sounds/bgm/pk_hall-om-mig.mp3' },
 ]
 
 let currentAudio = null
