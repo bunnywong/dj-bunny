@@ -61,6 +61,16 @@ function playSound(index, isDoubleClick = false) {
     currentButton = document.querySelectorAll('.btn')[index]
     currentSoundIndex = index
     currentAudio.play()
+
+    if (currentButton) {
+      currentButton.style.backgroundColor = '#ffcc00'
+    }
+
+    currentAudio.addEventListener('ended', () => {
+      if (currentButton) {
+        currentButton.style.backgroundColor = ''
+      }
+    })
   }
 }
 
@@ -159,6 +169,7 @@ function stopSound() {
     currentAudio.currentTime = 0
     if (currentButton) {
       currentButton.classList.remove('button-fade-out')
+      currentButton.style.backgroundColor = ''
     }
     currentAudio = null
     currentButton = null
