@@ -143,8 +143,15 @@ function playBGM(index, button) {
     .then(() => {
       if (button) {
         button.classList.add('playing')
+        button.style.backgroundColor = '#ffcc00'
       }
       currentBGMButton = button
+
+      currentBGM.addEventListener('ended', () => {
+        if (button) {
+          button.style.backgroundColor = ''
+        }
+      })
     })
     .catch((error) => {
       console.error('Error playing BGM:', error)
@@ -157,6 +164,7 @@ function stopBGM() {
     currentBGM.currentTime = 0
     if (currentBGMButton) {
       currentBGMButton.classList.remove('playing')
+      currentBGMButton.style.backgroundColor = ''
     }
     currentBGM = null
     currentBGMButton = null
