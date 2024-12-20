@@ -11,6 +11,7 @@ const urlsToCache = [
   '/sounds/hit-ear.mp3',
   '/sounds/fart.mp3',
   '/sounds/don-bell.mp3',
+  '/sounds/air-bell.mp3',
   '/sounds/bo-smile.mp3',
   '/sounds/applause-lite.mp3',
   '/sounds/applause-max.mp3',
