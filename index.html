@@ -4,108 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJ BunnY</title>
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-        }
-      .container {
-            margin-top: 50px;
-        }
-      .btn {
-            width: 100%;
-            max-height: 150px;
-            aspect-ratio: 1;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #1e1e1e; /* Base color */
-            border: 1px solid #2d2d2d;
-            color: #ffffff;
-            font-weight: 500;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            transition: all 0.2s ease-in-out;
-            font-size: 1rem;
-        }
-
-        /* Odd buttons */
-        .btn:nth-child(odd) {
-            background-color: #1e1e1e;
-            border-color: #2d2d2d;
-        }
-
-        /* Even buttons */
-        .btn:nth-child(even) {
-            background-color: #2d2d2d;
-            border-color: #3d3d3d;
-        }
-
-        /* Hover states */
-        .btn:nth-child(odd):hover {
-            background-color: #2d2d2d;
-            transform: translateY(-2px);
-        }
-
-        .btn:nth-child(even):hover {
-            background-color: #3d3d3d;
-            transform: translateY(-2px);
-        }
-
-        /* Update flash animation for odd buttons */
-        @keyframes buttonFlashOdd {
-            0% { background-color: #1e1e1e; }
-            50% { background-color: #3d3d3d; }
-            100% { background-color: #1e1e1e; }
-        }
-
-        /* Update flash animation for even buttons */
-        @keyframes buttonFlashEven {
-            0% { background-color: #2d2d2d; }
-            50% { background-color: #4d4d4d; }
-            100% { background-color: #2d2d2d; }
-        }
-
-        /* Apply different animations based on odd/even */
-        .btn:nth-child(odd).button-flash {
-            animation: buttonFlashOdd 0.3s ease;
-        }
-
-        .btn:nth-child(even).button-flash {
-            animation: buttonFlashEven 0.3s ease;
-        }
-
-        #buttonContainer {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        @media (max-width: 767px) {
-          .btn {
-                flex: 0 0 calc(50% - 10px);
-                width: calc(50% - 10px);
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 991px) {
-          .btn {
-                flex: 1 1 calc(33.333% - 5px);
-            }
-        }
-
-        @media (min-width: 992px) {
-          .btn {
-                flex: 1 1 calc(20% - 5px);
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container text-center">
