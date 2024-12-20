@@ -297,18 +297,3 @@ function handleBGMUpload(event) {
   }
   createBGMButtons() // Recreate BGM buttons to include the new uploads
 }
-
-// Add an event listener for file uploads for effects
-document
-  .getElementById('effectUpload')
-  .addEventListener('change', handleEffectUpload)
-
-function handleEffectUpload(event) {
-  const files = event.target.files
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i]
-    const url = URL.createObjectURL(file) // Create a URL for the uploaded file
-    sounds.push(url) // Add the uploaded effect to the sounds array
-  }
-  createButtons() // Recreate effect buttons to include the new uploads
-}
