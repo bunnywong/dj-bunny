@@ -1,31 +1,19 @@
-// Sound effects array
-const sounds = [
-  'sounds/effect/haha.mp3',
-  'sounds/effect/my-mom.mp3',
-  'sounds/effect/hit-ear.mp3',
-  'sounds/effect/fart.mp3',
-  'sounds/effect/don-bell.mp3',
-  'sounds/effect/air-bell.mp3',
-  'sounds/effect/bo-smile.mp3',
-  'sounds/effect/applause-lite.mp3',
-  'sounds/effect/applause-max.mp3',
-]
+let sounds = []
+let bgmSounds = []
 
-// BGM array
-const bgmSounds = [
-  { name: 'Chill - ice🧊', file: 'sounds/bgm/chill_ice.mp3' },
-  { name: 'PK - Hall🏛️', file: 'sounds/bgm/pk_hall-om-mig.mp3' },
-  { name: 'Hi - Bro👨🏻', file: 'sounds/bgm/hi_welcome-bro.mp3' },
-  { name: 'High - Ship', file: 'sounds/bgm/high_ship.mp3' },
-]
-
-let currentAudio = null
-let currentButton = null
-let currentSoundIndex = null
-let currentBGM = null
-let currentBGMButton = null
-let lastClickTime = 0
-const doubleClickDelay = 300
+// Fetch sounds configuration from data.json
+fetch('data.json')
+  .then((response) => response.json())
+  .then((data) => {
+    sounds = data.sounds
+    bgmSounds = data.bgmSounds
+    preloadAudio() // Preload audio after fetching data
+    createButtons()
+    createBGMButtons()
+  })
+  .catch((error) => {
+    console.error('Error loading sound data:', error)
+  })
 
 // Preload all audio files
 function preloadAudio() {
@@ -39,6 +27,14 @@ function preloadAudio() {
     audio.load() // Preload the audio
   })
 }
+
+let currentAudio = null
+let currentButton = null
+let currentSoundIndex = null
+let currentBGM = null
+let currentBGMButton = null
+let lastClickTime = 0
+const doubleClickDelay = 300
 
 // Initialize tabs
 $(document).ready(function () {
