@@ -16,6 +16,7 @@ const bgmSounds = [
   { name: 'Chill - ice🧊', file: 'sounds/bgm/chill_ice.mp3' },
   { name: 'PK - Hall🏛️', file: 'sounds/bgm/pk_hall-om-mig.mp3' },
   { name: 'Hi - Bro👨🏻', file: 'sounds/bgm/hi_welcome-bro.mp3' },
+  { name: 'High - Ship', file: 'sounds/bgm/high_ship.mp3' },
 ]
 
 let currentAudio = null
