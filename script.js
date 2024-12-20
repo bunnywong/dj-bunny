@@ -175,25 +175,44 @@ document.querySelector('.container').addEventListener('click', (event) => {
   }
 })
 
+// Keyboard event listener for tab switching and sound playing
 document.addEventListener('keydown', (event) => {
   const key = event.key
-  if (key >= '0' && key <= '9') {
-    const index = parseInt(key)
-    const soundIndex = index === 0 ? sounds.length - 1 : index - 1
-    playSound(soundIndex)
-
-    const buttons = document.querySelectorAll('.btn')
-    const button = buttons[soundIndex]
-    button.classList.add('button-flash')
-
-    setTimeout(() => {
-      button.classList.remove('button-flash')
-    }, 300)
-  } else if (key === ' ' || key === 'Escape') {
-    event.preventDefault()
-    stopSound()
+  if (key === '.') {
+    switchTab('next') // Switch to the next tab on pressing '.'
+  } else if (key === ',') {
+    switchTab('prev') // Switch to the previous tab on pressing ','
+  } else if (key >= '1' && key <= '9') {
+    const index = parseInt(key) - 1 // Convert key to index (0-8)
+    const currentTab = $('.tab-pane.show').attr('id') // Get current active tab ID
+    if (currentTab === 'effect') {
+      if (index < sounds.length) {
+        playSound(index) // Play sound effect
+      }
+    } else if (currentTab === 'bgm') {
+      if (index < bgmSounds.length) {
+        toggleBGM(index, currentBGMButton) // Toggle BGM
+      }
+    }
   }
 })
+
+// Function to switch tabs
+function switchTab(direction) {
+  const tabs = ['#effect', '#bgm'] // Array of tab IDs
+  const currentTab = $('.tab-pane.show').attr('id') // Get current active tab ID
+  const currentIndex = tabs.indexOf(`#${currentTab}`) // Find the index of the current tab
+
+  let newIndex
+  if (direction === 'next') {
+    newIndex = (currentIndex + 1) % tabs.length // Move to the next tab, loop back to start
+  } else {
+  }
+  newIndex = 0
+
+  // Activate the new tab
+  $(`#soundTabs a[href="${tabs[newIndex]}"]`).tab('show')
+}
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
