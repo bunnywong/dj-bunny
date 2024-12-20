@@ -227,6 +227,11 @@ document.addEventListener('keydown', (event) => {
         toggleBGM(index, document.querySelectorAll('#bgmContainer .btn')[index]) // Toggle BGM
       }
     }
+  } else if (key === ' ') {
+    // Check for space key
+    event.preventDefault() // Prevent default space key behavior (scrolling)
+    stopSound() // Stop sound effects
+    stopBGM() // Stop BGM
   }
 })
 
