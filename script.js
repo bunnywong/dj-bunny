@@ -128,9 +128,17 @@ function toggleBGM(index, button) {
 function playBGM(index, button) {
   currentBGM = new Audio(bgmSounds[index].file)
   currentBGM.loop = true
-  currentBGM.play()
-  button.classList.add('playing')
-  currentBGMButton = button
+  currentBGM
+    .play()
+    .then(() => {
+      if (button) {
+        button.classList.add('playing')
+      }
+      currentBGMButton = button
+    })
+    .catch((error) => {
+      console.error('Error playing BGM:', error)
+    })
 }
 
 function stopBGM() {
