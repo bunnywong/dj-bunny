@@ -144,7 +144,7 @@ function toggleBGM(index, button) {
       button.style.backgroundColor = '#ffcc00' // Set active background color
     } else {
       currentBGM.pause()
-      button.style.backgroundColor = '' // Reset background color
+      button.style.backgroundColor = '#cccccc' // Set paused background color
     }
   } else {
     // If a different button is clicked, stop the current BGM
