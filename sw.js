@@ -22,7 +22,7 @@ const urlsToCache = [
   '/sounds/bgm/pk_hall-om-mig.mp3',
 ]
 
-// Add logging to debug cache status
+// Install the service worker and cache the assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
@@ -36,33 +36,57 @@ self.addEventListener('install', (event) => {
   )
 })
 
-// Add logging to debug fetch events
+// Fetch the assets from the cache or network
 self.addEventListener('fetch', (event) => {
-  if (!event.request.url.startsWith('http')) {
-    return
-  }
-
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        console.log('Serving from cache:', event.request.url)
-        return response
-      }
-
-      console.log('Fetching from network:', event.request.url)
-      return fetch(event.request.clone()).then((response) => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
+    caches
+      .match(event.request)
+      .then((response) => {
+        if (response) {
+          console.log('Serving from cache:', event.request.url)
           return response
         }
 
-        const responseToCache = response.clone()
-        caches.open(CACHE_NAME).then((cache) => {
-          console.log('Caching new resource:', event.request.url)
-          cache.put(event.request, responseToCache)
-        })
+        console.log('Fetching from network:', event.request.url)
+        return fetch(event.request).then((response) => {
+          // Check if we received a valid response
+          if (
+            !response ||
+            response.status !== 200 ||
+            response.type !== 'basic'
+          ) {
+            return response
+          }
 
-        return response
+          const responseToCache = response.clone()
+          caches.open(CACHE_NAME).then((cache) => {
+            console.log('Caching new resource:', event.request.url)
+            cache.put(event.request, responseToCache)
+          })
+
+          return response
+        })
       })
+      .catch(() => {
+        // Fallback to a default offline page or asset if the network is unavailable
+        return caches.match('/index.html') // Serve the index.html if offline
+      })
+  )
+})
+
+// Activate the service worker and clean up old caches
+self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME]
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('Deleting old cache:', cacheName)
+            return caches.delete(cacheName)
+          }
+        })
+      )
     })
   )
 })
