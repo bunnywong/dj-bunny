@@ -14,7 +14,6 @@ const urlsToCache = [
   '/sounds/effect/fart.mp3',
   '/sounds/effect/don-bell.mp3',
   '/sounds/effect/air-bell.mp3',
-  '/sounds/effect/bo-smile.mp3',
   '/sounds/effect/applause-lite.mp3',
   '/sounds/effect/applause-max.mp3',
   '/sounds/bgm/chill_ice.mp3',

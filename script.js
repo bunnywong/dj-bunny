@@ -105,7 +105,6 @@ function createButtons() {
     fart: '💨',
     'don bell': '🔔',
     'air bell': '💺',
-    'bo smile': '😊',
     'applause lite': '👏',
     'applause max': '👏👏',
   }

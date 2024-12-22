@@ -5,18 +5,19 @@ const urlsToCache = [
   '/index.html', // Your main HTML file
   '/styles.css', // Your CSS file
   '/script.js', // Your JavaScript file
-  'sounds/effect/haha.mp3',
-  'sounds/effect/my-mom.mp3',
-  'sounds/effect/hit-ear.mp3',
-  'sounds/effect/fart.mp3',
-  'sounds/effect/don-bell.mp3',
-  'sounds/effect/air-bell.mp3',
-  'sounds/effect/bo-smile.mp3',
-  'sounds/effect/applause-lite.mp3',
-  'sounds/effect/applause-max.mp3',
-  'sounds/bgm/chill_ice.mp3',
-  'sounds/bgm/pk_hall-om-mig.mp3',
-  'sounds/bgm/hi_welcome-bro.mp3',
+  // Include all sound files for offline access
+  '/sounds/effect/haha.mp3',
+  '/sounds/effect/my-mom.mp3',
+  '/sounds/effect/hit-ear.mp3',
+  '/sounds/effect/fart.mp3',
+  '/sounds/effect/don-bell.mp3',
+  '/sounds/effect/air-bell.mp3',
+  '/sounds/effect/applause-lite.mp3',
+  '/sounds/effect/applause-max.mp3',
+  '/sounds/bgm/chill_ice.mp3',
+  '/sounds/bgm/pk_hall-om-mig.mp3',
+  '/sounds/bgm/hi_welcome-bro.mp3',
+  // Add any additional audio files you may have
 ]
 
 // Install the service worker and cache the assets
