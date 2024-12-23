@@ -14,9 +14,10 @@ const urlsToCache = [
   '/sounds/effect/air-bell.mp3',
   '/sounds/effect/applause-lite.mp3',
   '/sounds/effect/applause-max.mp3',
-  '/sounds/bgm/chill_ice.mp3',
+  '/sounds/effect/oh.mp3',
   '/sounds/bgm/pk_hall-om-mig.mp3',
   '/sounds/bgm/hi_welcome-bro.mp3',
+  '/sounds/bgm/ymca.mp3',
   // Add any additional audio files you may have
 ]
 

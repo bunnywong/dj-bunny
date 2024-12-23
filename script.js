@@ -103,6 +103,7 @@ function createButtons() {
     'my mom': '👩',
     'hit ear': '👂',
     fart: '💨',
+    oh: '😱',
     'don bell': '🔔',
     'air bell': '💺',
     'applause lite': '👏',
