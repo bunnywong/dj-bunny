@@ -12,8 +12,8 @@
     ],
     "bgmSounds": [
       { "name": "PK - Hall🏛️", "file": "sounds/bgm/pk_hall-om-mig.mp3" },
-      { "name": "Hi - Bro👨🏻", "file": "sounds/bgm/hi_welcome-bro.mp3" },
-      { "name": "High - Ship", "file": "sounds/bgm/high_ship.mp3" },
-      { "name": "Welcome - YMCA", "file": "sounds/bgm/ymca.mp3" }
+      { "name": "High - Ship🚢", "file": "sounds/bgm/high_ship.mp3" },
+      { "name": "Welcome - Bro👨🏻", "file": "sounds/bgm/hi_welcome-bro.mp3" },
+      { "name": "Welcome - YMCA🧢", "file": "sounds/bgm/ymca.mp3" }
     ]
   }
