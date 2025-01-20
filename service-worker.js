@@ -15,6 +15,7 @@ const urlsToCache = [
   '/sounds/effect/applause-lite.mp3',
   '/sounds/effect/applause-max.mp3',
   '/sounds/effect/oh.mp3',
+  '/sounds/bgm/rap_friend-wine.mp3',
   '/sounds/bgm/pk_hall-om-mig.mp3',
   '/sounds/bgm/hi_welcome-bro.mp3',
   '/sounds/bgm/hi_ymca.mp3',
