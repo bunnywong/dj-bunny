@@ -11,7 +11,9 @@
       "sounds/effect/applause-max.mp3"
     ],
     "bgmSounds": [
-      { "name": "Rap - Friend🍸", "file": "sounds/bgm/rap_friend-wine.mp3" },
+      { "name": "Rap - Friend Fast🍸", "file": "sounds/bgm/rap-fast_friend-wine.mp3" },
+      { "name": "Rap - Friend Mid🍸", "file": "sounds/bgm/rap-mid_friend-wine.mp3" },
+      { "name": "Rap - Friend Slow🍸", "file": "sounds/bgm/rap-slow_friend-wine.mp3" },
       { "name": "Welcome - YMCA🧢", "file": "sounds/bgm/hi_ymca.mp3" },
       { "name": "Welcome - Bro👨🏻", "file": "sounds/bgm/hi_welcome-bro.mp3" },
       { "name": "Chill - Visit Friend❤️", "file": "sounds/bgm/chill_visit-old-fd-dj.mp3" },
