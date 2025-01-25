@@ -20,7 +20,6 @@ const IndexPage = () => {
         return response.json()
       })
       .then((data) => {
-        console.log('🚀 ~ .then ~ data:', data)
         setSounds(data.sounds || [])
         setBGMSounds(data.bgmSounds || [])
       })
