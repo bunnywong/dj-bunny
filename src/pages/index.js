@@ -8,8 +8,9 @@ const IndexPage = () => {
   const [bgmSounds, setBGMSounds] = useState([])
   const [activeTab, setActiveTab] = useState('effect')
   const [currentAudio, setCurrentAudio] = useState(null)
+  const [playingSoundIndex, setPlayingSoundIndex] = useState(null)
   const [currentBGM, setCurrentBGM] = useState(null)
-
+  
   // Fetch sounds data
   useEffect(() => {
     fetch('/data.json')
@@ -32,13 +33,25 @@ const IndexPage = () => {
 
   // Play sound effect
   const playSound = (index) => {
-    if (currentAudio) {
-      currentAudio.pause()
+    if (currentAudio && playingSoundIndex === index) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      setCurrentAudio(null);
+      setPlayingSoundIndex(null);
+    } else {
+      if (currentAudio) {
+        currentAudio.pause();
+      }
+      const audio = new Audio(sounds[index]);
+      audio.play();
+      setCurrentAudio(audio);
+      setPlayingSoundIndex(index);
+      audio.onended = () => {
+        setCurrentAudio(null);
+        setPlayingSoundIndex(null);
+      };
     }
-    const audio = new Audio(sounds[index])
-    audio.play()
-    setCurrentAudio(audio)
-  }
+  };
 
   // Toggle BGM
   const toggleBGM = (index) => {
@@ -78,6 +91,7 @@ const IndexPage = () => {
                 index={index}
                 sound={sound}
                 onClick={() => playSound(index)}
+                isPlaying={playingSoundIndex === index}
               />
             ))}
           </div>

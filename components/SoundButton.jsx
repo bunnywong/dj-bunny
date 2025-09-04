@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SoundButton = ({ index, sound, onClick }) => {
+const SoundButton = ({ index, sound, onClick, isPlaying }) => {
   const fileName = sound.split('/').pop().replace('.mp3', '').replace(/-/g, ' ');
   const emojis = {
     haha: '😂',
@@ -17,7 +17,10 @@ const SoundButton = ({ index, sound, onClick }) => {
   const buttonName = `${(index + 1) % 10}. ${fileName} ${emoji}`;
 
   return (
-    <button className="btn btn-primary" onClick={onClick}>
+    <button 
+      className={`btn ${isPlaying ? 'btn-danger' : 'btn-primary'}`} 
+      onClick={onClick}
+    >
       {buttonName}
     </button>
   );
