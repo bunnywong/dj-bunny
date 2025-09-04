@@ -10,6 +10,8 @@ const IndexPage = () => {
   const [currentAudio, setCurrentAudio] = useState(null)
   const [playingSoundIndex, setPlayingSoundIndex] = useState(null)
   const [currentBGM, setCurrentBGM] = useState(null)
+  const [playingBGMIndex, setPlayingBGMIndex] = useState(null);
+  const [isBGMPaused, setIsBGMPaused] = useState(true);
   
   // Fetch sounds data
   useEffect(() => {
@@ -55,16 +57,28 @@ const IndexPage = () => {
 
   // Toggle BGM
   const toggleBGM = (index) => {
-    if (currentBGM) {
-      currentBGM.pause()
-      setCurrentBGM(null)
+    if (playingBGMIndex !== index) {
+      if (currentBGM) {
+        currentBGM.pause();
+      }
+      const audio = new Audio(bgmSounds[index].file);
+      audio.loop = true;
+      audio.play();
+      setCurrentBGM(audio);
+      setPlayingBGMIndex(index);
+      setIsBGMPaused(false);
     } else {
-      const audio = new Audio(bgmSounds[index].file)
-      audio.loop = true
-      audio.play()
-      setCurrentBGM(audio)
+      if (currentBGM) {
+        if (isBGMPaused) {
+          currentBGM.play();
+          setIsBGMPaused(false);
+        } else {
+          currentBGM.pause();
+          setIsBGMPaused(true);
+        }
+      }
     }
-  }
+  };
 
   // Handle BGM upload
   const handleBGMUpload = (event) => {
@@ -105,6 +119,8 @@ const IndexPage = () => {
                 index={index}
                 bgm={bgm}
                 onClick={() => toggleBGM(index)}
+                isPlaying={playingBGMIndex === index}
+                isPaused={isBGMPaused}
               />
             ))}
             <div id="bgmUploadContainer">
