@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import SoundButton from '../../components/SoundButton'
 import BGMButton from '../../components/BGMButton'
 import TabNavigation from '../../components/TabNavigation'
@@ -13,7 +13,7 @@ const IndexPage = () => {
   const [playingBGMIndex, setPlayingBGMIndex] = useState(null);
   const [isBGMPaused, setIsBGMPaused] = useState(true);
 
-  const stopAllSounds = () => {
+  const stopAllSounds = useCallback(() => {
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
@@ -27,7 +27,7 @@ const IndexPage = () => {
       setPlayingBGMIndex(null);
       setIsBGMPaused(true);
     }
-  };
+  }, [currentAudio, setCurrentAudio, setPlayingSoundIndex, currentBGM, setCurrentBGM, setPlayingBGMIndex, setIsBGMPaused]);
   
   // Fetch sounds data
   useEffect(() => {
@@ -50,7 +50,7 @@ const IndexPage = () => {
   }, [])
 
   // Play sound effect
-  const playSound = (index) => {
+  const playSound = useCallback((index) => {
     if (currentAudio && playingSoundIndex === index) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
@@ -69,10 +69,10 @@ const IndexPage = () => {
         setPlayingSoundIndex(null);
       };
     }
-  };
+  }, [currentAudio, playingSoundIndex, sounds]);
 
   // Toggle BGM
-  const toggleBGM = (index) => {
+  const toggleBGM = useCallback((index) => {
     if (playingBGMIndex !== index) {
       if (currentBGM) {
         currentBGM.pause();
@@ -94,7 +94,7 @@ const IndexPage = () => {
         }
       }
     }
-  };
+  }, [currentBGM, playingBGMIndex, bgmSounds, isBGMPaused]);
 
   // Handle BGM upload
   const handleBGMUpload = (event) => {
@@ -144,7 +144,7 @@ const IndexPage = () => {
     return () => {
       window.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [currentAudio, currentBGM]);
+  }, [currentAudio, currentBGM, stopAllSounds]);
 
   return (
     <div className="container text-center">
