@@ -7,6 +7,7 @@ const urlsToCache = [
   '/script.js', // Your JavaScript file
   // Include all sound files for offline access
   '/sounds/effect/haha.mp3',
+  '/sounds/effect/smile-small.mp3',
   '/sounds/effect/my-mom.mp3',
   '/sounds/effect/hit-ear.mp3',
   '/sounds/effect/fart.mp3',

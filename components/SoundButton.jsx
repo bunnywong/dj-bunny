@@ -4,6 +4,7 @@ const SoundButton = ({ index, sound, onClick, isPlaying }) => {
   const fileName = sound.split('/').pop().replace('.mp3', '').replace(/-/g, ' ');
   const emojis = {
     haha: '😂',
+    'smile small': '🙂',
     'my mom': '👩',
     'hit ear': '👂',
     fart: '💨',

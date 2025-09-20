@@ -9,6 +9,7 @@ const urlsToCache = [
   // Add all your sound files with exact paths
   '/script.js',
   '/sounds/effect/haha.mp3',
+  '/sounds/effect/smile-small.mp3',
   '/sounds/effect/my-mom.mp3',
   '/sounds/effect/hit-ear.mp3',
   '/sounds/effect/fart.mp3',
