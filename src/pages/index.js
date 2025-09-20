@@ -92,6 +92,25 @@ const IndexPage = () => {
     setBGMSounds(newBGMSounds)
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const numberKey = parseInt(event.key);
+      if (!isNaN(numberKey) && numberKey >= 1 && numberKey <= 9) {
+        if (activeTab === 'effect' && sounds[numberKey - 1]) {
+          playSound(numberKey - 1);
+        } else if (activeTab === 'bgm' && bgmSounds[numberKey - 1]) {
+          toggleBGM(numberKey - 1);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activeTab, sounds, bgmSounds, playSound, toggleBGM]);
+
   return (
     <div className="container text-center">
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
