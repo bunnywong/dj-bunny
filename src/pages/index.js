@@ -12,6 +12,22 @@ const IndexPage = () => {
   const [currentBGM, setCurrentBGM] = useState(null)
   const [playingBGMIndex, setPlayingBGMIndex] = useState(null);
   const [isBGMPaused, setIsBGMPaused] = useState(true);
+
+  const stopAllSounds = () => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      setCurrentAudio(null);
+      setPlayingSoundIndex(null);
+    }
+    if (currentBGM) {
+      currentBGM.pause();
+      currentBGM.currentTime = 0;
+      setCurrentBGM(null);
+      setPlayingBGMIndex(null);
+      setIsBGMPaused(true);
+    }
+  };
   
   // Fetch sounds data
   useEffect(() => {
@@ -113,6 +129,22 @@ const IndexPage = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [activeTab, sounds, bgmSounds, playSound, toggleBGM, setActiveTab]);
+
+  useEffect(() => {
+    const handleMouseDown = (event) => {
+      // Check if the click target is outside of any button
+      const isButtonClick = event.target.closest('button');
+      if (!isButtonClick) {
+        stopAllSounds();
+      }
+    };
+
+    window.addEventListener('mousedown', handleMouseDown);
+
+    return () => {
+      window.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, [currentAudio, currentBGM]);
 
   return (
     <div className="container text-center">
