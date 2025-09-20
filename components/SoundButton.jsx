@@ -19,7 +19,7 @@ const SoundButton = ({ index, sound, onClick, isPlaying }) => {
 
   return (
     <button 
-      className={`btn ${isPlaying ? 'btn-danger' : 'btn-primary'}`} 
+      className={`btn ${isPlaying ? 'btn-success' : 'btn-primary'}`} 
       onClick={onClick}
     >
       {buttonName}
