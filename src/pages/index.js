@@ -101,6 +101,9 @@ const IndexPage = () => {
         } else if (activeTab === 'bgm' && bgmSounds[numberKey - 1]) {
           toggleBGM(numberKey - 1);
         }
+      } else if (event.key === ' ') {
+        event.preventDefault(); // Prevent scrolling when space is pressed
+        setActiveTab((prevTab) => (prevTab === 'effect' ? 'bgm' : 'effect'));
       }
     };
 
@@ -109,7 +112,7 @@ const IndexPage = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeTab, sounds, bgmSounds, playSound, toggleBGM]);
+  }, [activeTab, sounds, bgmSounds, playSound, toggleBGM, setActiveTab]);
 
   return (
     <div className="container text-center">
