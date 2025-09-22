@@ -5,8 +5,8 @@ const SoundButton = ({ index, sound, onClick, isPlaying }) => {
   const emojis = {
     haha: '😂',
     'smile small': '🙂',
-    'my mom': '👩',
     'hit ear': '👂',
+    'my mom': '👩',
     fart: '💨',
     oh: '😱',
     'don bell': '🔔',
