@@ -11,8 +11,8 @@ const SoundButton = ({ index, sound, onClick, isPlaying }) => {
     oh: '😱',
     'don bell': '🔔',
     'air bell': '💺',
-    'applause lite': '👏',
     'applause max': '👏👏',
+    'applause lite': '👏',
   };
   const emoji = emojis[fileName] || '🎵';
   const buttonName = `${(index + 1) % 10}. ${fileName} ${emoji}`;
