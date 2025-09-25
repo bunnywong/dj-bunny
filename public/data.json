@@ -8,9 +8,8 @@
       "sounds/effect/oh.mp3",
       "sounds/effect/air-bell.mp3",
       "sounds/effect/don-bell.mp3",
-      "sounds/effect/cheers.mp3",
-      "sounds/effect/applause-max.mp3",
-      "sounds/effect/applause-lite.mp3"
+      "sounds/effect/applause-lite.mp3",
+      "sounds/effect/cheers.mp3"
     ],
     "bgmSounds": [
       { "name": "Rap - Song Girl👧", "file": "sounds/bgm/song-girl.ogg" },
