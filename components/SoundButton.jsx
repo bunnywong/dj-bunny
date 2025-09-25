@@ -4,15 +4,14 @@ const SoundButton = ({ index, sound, onClick, isPlaying }) => {
   const fileName = sound.split('/').pop().replace('.mp3', '').replace(/-/g, ' ');
   const emojis = {
     haha: '😂',
-    'smile small': '🙂',
+    'smile': '🙂',
     'hit ear': '👂',
     'my mom': '👩',
     fart: '💨',
     oh: '😱',
-    'don bell': '🔔',
     'air bell': '💺',
-    'applause max': '👏👏',
     'applause lite': '👏',
+    'cheers': '🗣️'
   };
   const emoji = emojis[fileName] || '🎵';
   const buttonName = `${(index + 1) % 10}. ${fileName} ${emoji}`;
