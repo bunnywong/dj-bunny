@@ -117,7 +117,7 @@ const IndexPage = () => {
         } else if (activeTab === 'bgm' && bgmSounds[numberKey - 1]) {
           toggleBGM(numberKey - 1);
         }
-      } else if (event.key === ' ') {
+      } else if (event.key === ' ' || event.key ==='Enter') {
         event.preventDefault(); // Prevent scrolling when space is pressed
         setActiveTab((prevTab) => (prevTab === 'effect' ? 'bgm' : 'effect'));
       }
